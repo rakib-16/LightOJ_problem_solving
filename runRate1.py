@@ -14,21 +14,25 @@
 
 # Number of test cases
 
+#Accepted Code
 
-T = int(input())
+t = int(input())
 
-while T > 0:
-    # Read inputs
+for _ in range(t):
     r1, r2, B = map(int, input().split())
-    
-    # Calculate balls played
-    ball_played = 300 - B
 
-    # Calculate current run rate and asking run rate
-    current_rr = (r2 / ball_played) * 6
-    asking_rr = ((r1 - r2 + 1) / B) * 6
+    if B == 0:
+        currentRunRate = r2 / 50
+    else:
+        completedOver = (300 - B) / 6
+        currentRunRate = r2 / completedOver
 
-    # Print results with two decimal places
-    print(f"{current_rr:.2f} {asking_rr:.2f}")
-    
-    T -= 1
+    if B == 0 or r2 > r1:
+        requiredRunRate = 0.00
+    else:
+        runs_needed = (r1 + 1) - r2
+        overs_remaining = B / 6
+        requiredRunRate = runs_needed / overs_remaining
+
+    print(f"{currentRunRate:.2f} {requiredRunRate:.2f}")
+
